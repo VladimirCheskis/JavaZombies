@@ -3,6 +3,9 @@ package entities;
 import java.awt.Point;
 
 public interface IEntity {
+	String getName();	
 	Point getPoint();
-	String getName();
+
+	void setName(String name);	
+	void setPoint(Point point);
 }
