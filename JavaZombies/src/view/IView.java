@@ -4,6 +4,7 @@ import java.util.function.Consumer;
 
 import entities.IGame;
 
+// Privet
 public interface IView {
 	
 	IGame getGame();
