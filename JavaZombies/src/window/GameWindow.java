@@ -13,15 +13,21 @@ import view.ViewImpl;
  
 public class GameWindow {
 	  
-	static class GameTimerTask extends TimerTask {
+	private static final int TIME_STEP = 1000;
+	class GameTimerTask extends TimerTask {
 
+		public GameTimerTask(GameWindow gameWindow) {
+			super();
+			this.gameWindow = gameWindow;
+		}
 		@Override
 		public void run() {
-			GameWindow.step();
+			gameWindow.step();
 		}
+		GameWindow gameWindow;
 	}
 		
-	public static void showGame(IGame game)
+	public void showGame(IGame game)
 	{
 		IView view = new ViewImpl(game);
 		canv= new GameCanvas(view);
@@ -44,20 +50,19 @@ public class GameWindow {
         
         currentGame = game;
         
-        //timer= new Timer( 1000 , ent->step() );
         timer = new Timer();
-        timer.schedule(task, 1000, 1000);
+        timer.schedule(task, TIME_STEP, TIME_STEP);
 	}
 	
-	static void step()
+	void step()
 	{
-		currentGame.step(0.1f);
-		 w.update(canv.getGraphics());
+		currentGame.step(TIME_STEP * 1.E-3f);
+		w.update(canv.getGraphics());
 	}
 	
-	static GameCanvas canv;
-	static JFrame w;
-	static Timer timer;
-	static IGame currentGame;
-	static GameTimerTask task = new GameTimerTask();
+	GameCanvas canv;
+	JFrame w;
+	Timer timer;
+	IGame currentGame;
+	GameTimerTask task = new GameTimerTask(this);
 }

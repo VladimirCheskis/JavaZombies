@@ -3,6 +3,9 @@ package entities;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import actions.ActionList;
+import actions.IAction;
+
 public class Game implements IGame {
 
 	@Override
@@ -25,11 +28,13 @@ public class Game implements IGame {
 
 	@Override
 	public void step(float dtSec) {
-		allEntities.forEach(ent->{
-			Point p = ent.getPoint();
-			if (p.x > 0)
-				ent.setPoint(new Point(p.x-1, p.y));
-		});
-		
+		actionList.step(dtSec);
 	}
+	
+	ActionList actionList = new ActionList();
+
+	@Override
+	public void add(IAction action) {
+		actionList.add(action);
+	}	
 }
