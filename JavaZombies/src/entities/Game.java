@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Game implements IGame {
@@ -20,5 +21,15 @@ public class Game implements IGame {
 	@Override
 	public void remove(IEntity entity) {
 		allEntities.remove(entity);
+	}
+
+	@Override
+	public void step(float dtSec) {
+		allEntities.forEach(ent->{
+			Point p = ent.getPoint();
+			if (p.x > 0)
+				ent.setPoint(new Point(p.x-1, p.y));
+		});
+		
 	}
 }

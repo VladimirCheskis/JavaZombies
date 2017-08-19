@@ -5,4 +5,6 @@ public interface IGame {
 	
 	void add(IEntity entity);
 	void remove(IEntity entity);
+	
+	void step(float dtSec);
 }
