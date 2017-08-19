@@ -1,16 +1,20 @@
 package view;
 
+import java.util.function.Consumer;
+
 import entities.IGame;
 
 public interface IView {
 	
-	IGame game();
+	IGame getGame();
 	
-	IImageStorage imageStorge();
+	IImageStorage imageStorage();
 	
 	IPointTransform imagePointTransform();
 	IPointTransform textPointTransform();
 	
 	int defaultWidth();
 	int defaultHeight();
+	
+	void forEarch(Consumer<ISprite> consumer);
 }

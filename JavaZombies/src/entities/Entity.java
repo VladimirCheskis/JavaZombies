@@ -1,15 +1,23 @@
 package entities;
 
 import java.awt.Point;
-import java.util.function.Consumer;
-
-import view.ISprite;
 
 public class Entity implements IEntity {
 
+	public Entity(String name, Point point) {
+		super();
+		this.name = name;
+		this.point = point;
+	}
+	
+	public Entity(String name, int x, int y) {
+		super();
+		this.name = name;
+		this.point = new Point(x, y);
+	}
+	
 	String name;
 	Point  point;
-	ISprite sprite;
 	
 	@Override
 	public Point getPoint() {
@@ -29,16 +37,5 @@ public class Entity implements IEntity {
 	@Override
 	public void setPoint(Point point) {
 		this.point = point;
-	}
-	
-	@Override	
-	public void acceptSprites(Consumer<ISprite> consumer) {
-		if (sprite != null)
-			consumer.accept(sprite);
-	}	
-
-	@Override
-	public ISprite mainSprite() {
-		return sprite;
 	}
 }

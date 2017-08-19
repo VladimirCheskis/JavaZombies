@@ -1,17 +1,20 @@
 package window;
 
 import java.awt.*;
-import java.awt.event.MouseListener;
+
 
 import javax.swing.*;
 
+import entities.IGame;
 import view.IView;
+import view.ViewImpl;
 
  
 public class GameWindow {
 	  
-	public static void showGame(IView view)
+	public static void showGame(IGame game)
 	{
+		IView view = new ViewImpl(game);
 		GameCanvas canv= new GameCanvas(view);
 		
 		/* ������� ��������� ����*/

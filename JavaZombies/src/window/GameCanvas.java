@@ -4,47 +4,25 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Label;
 import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.function.Consumer;
 
 import javax.swing.JComponent;
 
 import entities.IEntity;
+import view.IPointTransform;
 import view.ISprite;
 import view.IView;
 
 
-public class GameCanvas extends Frame {
+public class GameCanvas extends JComponent {
 	 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -370745726688992561L;
 
-
-	  class PaintConsumer implements Consumer<entities.IEntity>
-	  {
-	    public PaintConsumer(Graphics2D g2d, GameCanvas canvas) {
-			super();
-			this.g2d = g2d;
-			this.canvas = canvas;
-		}
-
-	    GameCanvas canvas;
-		Graphics2D g2d;
-	    
-		@Override
-		public void accept(IEntity entity) {
-			
-			entity.acceptSprites(sprite->canvas.paintSprite(g2d, sprite));
-		}
-		  
-	  }
-	
 	  public void paintComponent(Graphics g){
 		  
 		super.paintComponents(g);		
@@ -55,7 +33,7 @@ public class GameCanvas extends Frame {
 		Font newFont = currentFont.deriveFont(currentFont.getSize() * 1.5F);
 		g2d.setFont(newFont);
 		
-		view.game().entities().forEach(new PaintConsumer(g2d, this));
+		view.forEarch(sprite->paintSprite(g2d, sprite));
 
 		g2d.setFont(currentFont);
 		
@@ -85,19 +63,4 @@ public class GameCanvas extends Frame {
 	}
 
 	IView view;
-/*	
-	int dx = 95, dy = 190, dyText = 20;
-	int x0 = 10, y0 = 10;
-	IZombieImages zombieImages = new ZombieImagesImpl();
-	public int defaultWidth() {
-		// TODO Auto-generated method stub
-		return dx * 8;
-	}
-
-	public int defaultHeight() {
-		// TODO Auto-generated method stub
-		return (dy + dyText) * 4;
-	}
-*/
-
 }

@@ -11,7 +11,4 @@ public interface IEntity {
 
 	void setName(String name);	
 	void setPoint(Point point);
-	
-	ISprite mainSprite();
-	void acceptSprites(Consumer<ISprite> consumer);
 }
