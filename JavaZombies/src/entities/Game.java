@@ -1,6 +1,10 @@
 package entities;
 
+import java.awt.Point;
 import java.util.ArrayList;
+
+import actions.ActionList;
+import actions.IAction;
 
 public class Game implements IGame {
 
@@ -21,4 +25,16 @@ public class Game implements IGame {
 	public void remove(IEntity entity) {
 		allEntities.remove(entity);
 	}
+
+	@Override
+	public void step(float dtSec) {
+		actionList.step(dtSec);
+	}
+	
+	ActionList actionList = new ActionList();
+
+	@Override
+	public void add(IAction action) {
+		actionList.add(action);
+	}	
 }

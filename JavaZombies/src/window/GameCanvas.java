@@ -1,17 +1,13 @@
 package window;
 
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
-import java.util.function.Consumer;
 
 import javax.swing.JComponent;
 
-import entities.IEntity;
-import view.IPointTransform;
 import view.ISprite;
 import view.IView;
 

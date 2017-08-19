@@ -1,24 +1,39 @@
 package window;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
-
-import javax.swing.*;
+import javax.swing.JFrame;
+//import javax.swing.Timer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import entities.IGame;
 import view.IView;
 import view.ViewImpl;
-
  
 public class GameWindow {
 	  
-	public static void showGame(IGame game)
+	private static final int TIME_STEP = 1000;
+	class GameTimerTask extends TimerTask {
+
+		public GameTimerTask(GameWindow gameWindow) {
+			super();
+			this.gameWindow = gameWindow;
+		}
+		@Override
+		public void run() {
+			gameWindow.step();
+		}
+		GameWindow gameWindow;
+	}
+		
+	public void showGame(IGame game)
 	{
 		IView view = new ViewImpl(game);
-		GameCanvas canv= new GameCanvas(view);
+		canv= new GameCanvas(view);
 		
 		/* ������� ��������� ����*/
-		JFrame w=new JFrame("JavaZombies");
+		w=new JFrame("JavaZombies");
 		/*������� �������� ����*/
 		w.setSize(view.defaultWidth(), view.defaultHeight());
 	 
@@ -32,5 +47,22 @@ public class GameWindow {
 		
         w.add(canv);		
         w.setVisible(true);				
+        
+        currentGame = game;
+        
+        timer = new Timer();
+        timer.schedule(task, TIME_STEP, TIME_STEP);
 	}
+	
+	void step()
+	{
+		currentGame.step(TIME_STEP * 1.E-3f);
+		w.update(canv.getGraphics());
+	}
+	
+	GameCanvas canv;
+	JFrame w;
+	Timer timer;
+	IGame currentGame;
+	GameTimerTask task = new GameTimerTask(this);
 }
