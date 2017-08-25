@@ -18,6 +18,7 @@ public class Entity implements IEntity {
 	
 	String name;
 	Point  point;
+	String imageName;
 	
 	@Override
 	public Point getPoint() {
@@ -38,4 +39,15 @@ public class Entity implements IEntity {
 	public void setPoint(Point point) {
 		this.point = point;
 	}
+
+	@Override
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+	
+	
 }
