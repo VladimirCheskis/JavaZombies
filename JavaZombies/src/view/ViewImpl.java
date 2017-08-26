@@ -37,7 +37,8 @@ public class ViewImpl implements IView {
 	IGame game;
 	
 	// Magic constants. To be refactored.
-	int dx = 95, dy = 190, dyText = 20;
+//	int dx = 95, dy = 190, dyText = 20;
+	int dx = 19, dy = 38, dyText = 20;
 	int x0 = 10, y0 = 10;
 
 	IPointTransform imageTransform = new PointTransform(x0, y0 + dyText,     dx, dy + dyText);
@@ -45,12 +46,12 @@ public class ViewImpl implements IView {
 
 	@Override
 	public int defaultWidth() {
-		return dx * 8;
+		return dx * 8 * 5; //!
 	}
 
 	@Override
 	public int defaultHeight() {
-		return (dy + dyText) * 4;
+		return (dy * 5 + dyText) * 4; //!
 	}
 
 	@Override
