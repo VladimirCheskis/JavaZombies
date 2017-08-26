@@ -1,9 +1,9 @@
 package animationTesting;
 
-public class ImagingErorException extends Exception {
+public class AnimationErorException extends Exception {
 String reason;
 
-public ImagingErorException(String reason) {
+public AnimationErorException(String reason) {
 	super();
 	this.reason = reason;
 }
