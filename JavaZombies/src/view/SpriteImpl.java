@@ -9,7 +9,7 @@ public class SpriteImpl implements ISprite {
 
 	@Override
 	public BufferedImage image() {
-		return view.imageStorage().image(entity.getName());
+		return view.imageStorage().image(entity.getImageName());
 	}
 
 	public SpriteImpl(IEntity entity, IView view) {
